@@ -26,19 +26,19 @@ function Tabata() {
             }}>
                 <div>
                     <label>FOR</label>
-                    <input type="number" value='8' name='round' />
+                    <input type="number" defaultValue='8' name='round' />
                     <label>ROUND</label>
                 </div>
                 <br />
                 <div>
                     <label>WORK</label>
-                    <input type="number" value='15' name='work' />
+                    <input type="number" defaultValue='15' name='work' />
                     <label>SECONDS</label>
                 </div>
                 <br />
                 <div>
                     <label>REST</label>
-                    <input type="number" value='30' name='rest' />
+                    <input type="number" defaultValue='30' name='rest' />
                     <label>SECONDS</label>
                 </div>
 
