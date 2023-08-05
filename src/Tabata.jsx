@@ -24,17 +24,24 @@ function Tabata() {
                 setRest(form.rest.value)
                 // navigate('/countdown')
             }}>
-                <label>FOR</label>
-                <input type="number" placeholder='8' name='round' />
-                <label>ROUND</label>
+                <div>
+                    <label>FOR</label>
+                    <input type="number" value='8' name='round' />
+                    <label>ROUND</label>
+                </div>
                 <br />
-                <label>WORK</label>
-                <input type="number" placeholder='8' name='work' />
-                <label>SECONDS</label>
+                <div>
+                    <label>WORK</label>
+                    <input type="number" value='15' name='work' />
+                    <label>SECONDS</label>
+                </div>
                 <br />
-                <label>REST</label>
-                <input type="number" placeholder='8' name='rest' />
-                <label>SECONDS</label>
+                <div>
+                    <label>REST</label>
+                    <input type="number" value='30' name='rest' />
+                    <label>SECONDS</label>
+                </div>
+
                 <br />
                 <input type="submit" value='Start' />
             </form>

@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import {Routes, Route} from 'react-router-dom'
 import Tabata from './Tabata'
@@ -9,12 +6,6 @@ import Clock from './Clock'
 import CountDown from './CountDown'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [time, setTime] = useState(new Date().toLocaleTimeString())
-  //refreshes the time every second
-  setInterval(() => {
-    setTime(new Date().toLocaleTimeString())
-  })
 
   return (
     <>

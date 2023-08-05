@@ -9,7 +9,7 @@ function CountDown({ round, work, rest }) {
   const [workRound, setWorkRound] = useState(true);
   const [timer, isTargetAchieved] = useTimer({
     precision: 'seconds',
-    startValues: { seconds: 10 },
+    startValues: { seconds: 5 },
     target: { seconds: 0 },
     countdown: true
   });
@@ -19,45 +19,49 @@ function CountDown({ round, work, rest }) {
   }, []);
 
   timer.addEventListener('targetAchieved', () => {
-    if (rounds == round) {
+    if (rounds > round) {
       timer.stop();
-      return;
     }
-    else{
-      if(rounds==0)
-      {setRounds(rounds+1);}
-      //si es numero par aumentamos el contador de rounds y empezamos el timer de trabajo
-      // si rounds es par empezamos el timer de trabajo
-      if (workRound) { 
-        timer.start({ startValues: { seconds: work },target: { seconds: 0 } })
-        setWorkRound(!workRound);
-        console.log('rounds: ' + rounds)
-      }
-      //si es numero impar empezamos el timer de descanso
-      else{
-        timer.start({ startValues: { seconds: rest },target: { seconds: 0 } });
-        setWorkRound(!workRound);
-        setRounds(rounds + 1);
-        console.log('rounds: ' + rounds)
-      }
+    else if (rounds == 0) //si es el primer round no hacemos nada
+    {
+      timer.stop();
+      setRounds(rounds + 1);
+      setWorkRound(true);
+      timer.start({ startValues: { seconds: work }, target: { seconds: 0 } })
+      console.log('rounds: ' + rounds)
+    }
+    else if (workRound) {
+      timer.stop();
+      setWorkRound(false);
+      timer.start({ startValues: { seconds: rest }, target: { seconds: 0 } })
+      console.log('rounds: ' + rounds)
+    }
+    //si es numero impar empezamos el timer de descanso
+    else {
+      timer.stop();
+      setWorkRound(true);
+      setRounds(rounds + 1);
+      timer.start({ startValues: { seconds: work }, target: { seconds: 0 } });
+      console.log('rounds: ' + rounds)
     }
   })
 
-  if (rounds == 0) {
+  if (rounds > round) {
+    return <h1>FINISHED</h1>
+  }
+  else if (rounds == 0) {
     return (
       <>
-        <h1>COUNTDOWN</h1>
+        <h1>GET READY</h1>
         <h1>{timer.getTimeValues().seconds}</h1>
       </>
 
     )
   }
-  else if (rounds == round) {
-    return <h1>FINISHED</h1>
-  }
   else if (workRound) {
     return (
       <>
+        <h2>ROUND {rounds} OF {round}</h2>
         <h1>WORK</h1>
         <h1>{timer.getTimeValues().seconds}</h1>
       </>
@@ -66,6 +70,7 @@ function CountDown({ round, work, rest }) {
   else if (!workRound) {
     return (
       <>
+        <h2>ROUND {rounds} OF {round}</h2>
         <h1>REST</h1>
         <h1>{timer.getTimeValues().seconds}</h1>
       </>
