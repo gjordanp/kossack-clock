@@ -12,8 +12,8 @@ function Clock() {
     // const deleteChar = () => {}
   return (
     <>
-        <h1>CLOCK</h1>
-        <h1>{time}</h1>
+        <h2 class='top-left'>CLOCK</h2>
+        <h1 class='time'>{time}</h1>
     </>
   )
 }
