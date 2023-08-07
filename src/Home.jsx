@@ -12,7 +12,7 @@ function Home() {
             <div id='vert-div'>
             <button onClick={()=>navigate('/clock')}>CLOCK</button>
             <button onClick={()=>navigate('/tabata')}>TABATA</button>
-            <button>FOR TIME</button>
+            <button onClick={()=>navigate('/fortime')}>FOR TIME</button>
             <button>EMOM</button>
             <button>AMRAP</button>
             </div>
