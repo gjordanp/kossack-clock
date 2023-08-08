@@ -48,6 +48,7 @@ button {
   font-family: inherit;
   font-style: italic;
   background-color: #1a1a1a;
+  color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -150,6 +151,7 @@ input[type=submit] {
   font-family: inherit;
   font-style: italic;
   background-color: #1a1a1a;
+  color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
   width: 6em;
