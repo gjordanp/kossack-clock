@@ -7,8 +7,9 @@ function Home() {
     const navigate = useNavigate();
     return (
         <>
-            
-            <h1>KOSSACK SC</h1>
+            {/* <img src="/kossack-logo.svg" alt=""/> */}
+            <img src="/logo.png" alt=""/>
+            {/* <h1>KOSSACK SC</h1> */}
             <div id='vert-div'>
             <button onClick={()=>navigate('/clock')}>CLOCK</button>
             <button onClick={()=>navigate('/tabata')}>TABATA</button>
