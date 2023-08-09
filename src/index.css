@@ -130,6 +130,7 @@ form div>input{
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
   width: 3em;
@@ -139,9 +140,13 @@ form label{
   font-weight: 500;
   font-family: inherit;
   width: 3em;
-  
+  color: #ffffff;
 }
 /*form submit button*/
+input{
+  -webkit-user-select: all;
+  user-select: all;
+}
 input[type=submit] {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -160,6 +165,7 @@ input[type=submit] {
 input[type=submit]:hover {
   border-color: #646cff;
 }
+
 
 .time{
   font-size: 4em;

@@ -21,7 +21,7 @@ function Fortime() {
             }}>
                 <div>
                     <label>FOR</label>
-                    <input type="number" defaultValue='2' name='time' />
+                    <input type="number" defaultValue='2' name='time' onClick={(e) => {e.target.select()}} />
                     <label>MINUTES</label>
                 </div>
                 <br />
