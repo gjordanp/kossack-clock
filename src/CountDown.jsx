@@ -16,23 +16,27 @@ function CountDown({ round, work, rest }) {
   });
 
 
+
   useEffect(() => {
     timer.start();
 
     timer.addEventListener('secondsUpdated', () => {
       if (timer.getTimeValues().seconds == 3) {
         // synth.triggerAttackRelease('C5', '0.1');
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        // new Tone.PolySynth().toDestination().triggerAttackRelease(["D4"], 0.3);
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
         // console.log('oscillator1')
       }
       else if (timer.getTimeValues().seconds == 2) {
         // synth.triggerAttackRelease('C5', '0.1');
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        // new Tone.PolySynth().toDestination().triggerAttackRelease(["D4"], 0.3);
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
         // console.log('oscillator2')
       }
       else if (timer.getTimeValues().seconds == 1) {
         // synth.triggerAttackRelease('E5', '0.4');
-        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.5");
+        // new Tone.PolySynth().toDestination().triggerAttackRelease(["F4"], 0.6);
+        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.6");
         // console.log('oscillator3')
       }
     })
@@ -45,7 +49,7 @@ function CountDown({ round, work, rest }) {
       }
       else if (rounds == 0) //si es el primer round no hacemos nada
       {
-        // timer.stop();
+        timer.stop();
         setRounds(rounds + 1);
         setWorkRound(true);
         timer.start({ startValues: { seconds: work }, target: { seconds: 0 } })
@@ -55,7 +59,7 @@ function CountDown({ round, work, rest }) {
         //   )
       }
       else if (workRound) {
-        // timer.stop();
+        timer.stop();
         setWorkRound(false);
         timer.start({ startValues: { seconds: rest }, target: { seconds: 0 } })
         // console.log(
@@ -65,7 +69,7 @@ function CountDown({ round, work, rest }) {
       }
       //si es numero impar empezamos el timer de descanso
       else {
-        // timer.stop();
+        timer.stop();
         setWorkRound(true);
         setRounds(rounds + 1);
         timer.start({ startValues: { seconds: work }, target: { seconds: 0 } });

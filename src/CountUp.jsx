@@ -32,25 +32,25 @@ function CountUp({ time }) {
 
     timer.addEventListener('secondsUpdated', () => {
       if (timer.getTimeValues().seconds == 3) {
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
       }
       else if (timer.getTimeValues().seconds == 2) {
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
       }
       else if (timer.getTimeValues().seconds == 1) {
-        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.5");
+        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.6");
       }
     })
 
     timer2.addEventListener('secondsUpdated', () => {
       if (timer2.getTimeValues().seconds == time * 60 - 3) {
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
       }
       else if (timer2.getTimeValues().seconds == time * 60 - 2) {
-        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.3");
+        new Tone.Oscillator(600, "triangle").toDestination().start().stop("+0.4");
       }
       else if (timer2.getTimeValues().seconds == time * 60 - 1) {
-        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.5");
+        new Tone.Oscillator(900, "triangle").toDestination().start().stop("+0.6");
       }
     })
 
