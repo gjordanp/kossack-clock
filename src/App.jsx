@@ -6,9 +6,12 @@ import Home from './Home'
 import Clock from './Clock'
 import Emom from './Emom'
 import Amrap from './Amrap'
+import { inject } from '@vercel/analytics';
+ 
+
 
 function App() {
-
+  inject();
   return (
     <>
       <Routes>
