@@ -11,12 +11,12 @@ function Tabata() {
     const [rest, setRest] = useState(0);
 
     if (round > 0 && work > 0 && rest > 0) {
-        return <CountDown round={round} work={work} rest={rest} />
+        return <CountDown name="TABATA" round={round} work={work} rest={rest} />
     }
     return (
         <>
             <h1>TABATA</h1>
-            <form action="/countdown" method="post" onSubmit={() => {
+            <form action=""  onSubmit={() => {
                 //get form object values
                 const form = document.querySelector('form')
                 setRound(form.round.value)

@@ -4,8 +4,8 @@ import Tabata from './Tabata'
 import Fortime from './Fortime'
 import Home from './Home'
 import Clock from './Clock'
-import CountDown from './CountDown'
-import CountUp from './CountUp'
+import Emom from './Emom'
+import Amrap from './Amrap'
 
 function App() {
 
@@ -16,6 +16,8 @@ function App() {
         <Route path='/clock' element={<Clock/>}/>
         <Route path='/tabata' element={<Tabata/>}/>
         <Route path='/fortime' element={<Fortime/>}/>
+        <Route path='/emom' element={<Emom/>}/>
+        <Route path='/amrap' element={<Amrap/>}/>
       </Routes>
     </>
   )

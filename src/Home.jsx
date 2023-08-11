@@ -14,8 +14,8 @@ function Home() {
             <button onClick={()=>navigate('/clock')}>CLOCK</button>
             <button onClick={()=>navigate('/tabata')}>TABATA</button>
             <button onClick={()=>navigate('/fortime')}>FOR TIME</button>
-            <button>EMOM</button>
-            <button>AMRAP</button>
+            <button onClick={()=>navigate('/emom')}>EMOM</button>
+            <button onClick={()=>navigate('/amrap')}>AMRAP</button>
             </div>
         </>
     )
