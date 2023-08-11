@@ -79,6 +79,7 @@ function CountDown({ name, round, work, rest }) {
       <>
         <h1>GET READY</h1>
         <h1 className='time'>{timer.getTimeValues().seconds}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
 
     )
@@ -89,6 +90,7 @@ function CountDown({ name, round, work, rest }) {
         <h2 className='top-left'>{name} - ROUND {rounds} OF {round}</h2>
         <h1>WORK</h1>
         <h1 className='time'><span className='red'>{rounds} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }
@@ -98,6 +100,7 @@ function CountDown({ name, round, work, rest }) {
         <h2 className='top-left'>{name} - ROUND {rounds} OF {round}</h2>
         <h1>REST</h1>
         <h1 className='time'> <span className='red'>{rounds} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }

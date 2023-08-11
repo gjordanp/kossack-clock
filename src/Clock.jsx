@@ -14,6 +14,7 @@ function Clock() {
     <>
         <h2 className='top-left'>CLOCK</h2>
         <h1 className='time'>{time}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
     </>
   )
 }

@@ -50,6 +50,7 @@ function Emom() {
                 <br />
                 <input type="submit" value='Start' />
             </form>
+            <img className='bottom-right' src="/k-logo.png" alt=""/>
         </>
     )
 

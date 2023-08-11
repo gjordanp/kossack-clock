@@ -95,6 +95,7 @@ function CountUp({ time }) {
         <h2 className='top-left'>FOR TIME</h2>
         <h1>GET READY</h1>
         <h1 className='time'>{timer.getTimeValues().seconds}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }
@@ -103,6 +104,7 @@ function CountUp({ time }) {
       <>
         <h2 className='top-left'>FOR TIME</h2>
         <h1 className='time'>{timer2.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }
