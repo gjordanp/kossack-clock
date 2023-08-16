@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import CountDown from './CountDown';
 import { useState } from 'react';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 
 function Tabata() {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Tabata() {
     }
     return (
         <>
+            <ArrowCircleLeftOutlinedIcon className='back' fontSize='large' onClick={() => navigate('..')} />
             <h1>TABATA</h1>
             <form action=""  onSubmit={() => {
                 //get form object values

@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import CountUp from './CountUp';
 import { useState } from 'react';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 
 function Fortime() {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Fortime() {
     }
     return (
         <>
+        <ArrowCircleLeftOutlinedIcon className='back' fontSize='large' onClick={() => navigate('..')} />    
             <h1>FOR TIME</h1>
             <form action=""  onSubmit={() => {
                 //get form object values
