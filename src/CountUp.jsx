@@ -9,7 +9,7 @@ function CountUp({ time }) {
   const [rounds, setRounds] = useState(0);
   const [timer, isTargetAchieved] = useTimer({
     precision: 'seconds',
-    startValues: { seconds: 5 },
+    startValues: { seconds: 10 },
     target: { seconds: 0 },
     countdown: true,
   });

@@ -10,7 +10,7 @@ function CountDown({ name, round, work, rest }) {
   const [workRound, setWorkRound] = useState(true);
   const [timer, isTargetAchieved] = useTimer({
     precision: 'seconds',
-    startValues: { seconds: 5 },
+    startValues: { seconds: 10 },
     target: { seconds: 0 },
     countdown: true
   });
