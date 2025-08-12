@@ -39,6 +39,11 @@ h1 {
   line-height: 1.1;
 }
 
+h3 {
+  font-size: 2.5rem;
+  line-height: 1.0;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -168,8 +173,23 @@ input[type=submit]:hover {
 
 
 .time{
-  font-size: 17vw;
-  /* font-size: 10rem; */
+  font-size: min(17vw, 12rem);
+  /* Responsive font size with increased maximum limit */
+}
+
+/* Additional media queries for better landscape support */
+@media (orientation: landscape) {
+  .time {
+    font-size: min(15vh, 9rem);
+    /* Use viewport height for landscape and increased max size */
+  }
+}
+
+@media (min-width: 768px) and (orientation: landscape) {
+  .time {
+    font-size: min(12vh, 7rem);
+    /* Increased size on larger landscape screens */
+  }
 }
 .red{
   color: red;

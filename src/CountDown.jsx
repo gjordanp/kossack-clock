@@ -5,10 +5,11 @@ import { Timer } from "easytimer.js";
 import * as Tone from 'tone'
 
 
-function CountDown({ name, round, work, rest, restBetweenRounds = 0 }) {
+function CountDown({ name, sets = 1, round, work, rest, restBetweenRounds = 0 }) {
+  const [currentSet, setCurrentSet] = useState(0);
   const [rounds, setRounds] = useState(0);
   const [workRound, setWorkRound] = useState(true);
-  const [restBetweenRound, setRestBetweenRound] = useState(false);
+  const [restBetweenSet, setRestBetweenSet] = useState(false);
   const [timer, isTargetAchieved] = useTimer({
     precision: 'seconds',
     startValues: { seconds: 10 },
@@ -45,59 +46,73 @@ function CountDown({ name, round, work, rest, restBetweenRounds = 0 }) {
 
   useEffect(() => {
     timer.addEventListener('targetAchieved', () => {
-      if (rounds > round) {
+      // If all sets are completed
+      if (currentSet > sets) {
         timer.stop();
       }
-      else if (rounds == 0) //si es el primer round no hacemos nada
-      {
+      // Initial "GET READY" phase
+      else if (currentSet == 0 && rounds == 0) {
         timer.stop();
-        setRounds(rounds + 1);
+        setCurrentSet(1);
+        setRounds(1);
         setWorkRound(true);
-        setRestBetweenRound(false);
+        setRestBetweenSet(false);
         timer.start({ startValues: { seconds: work }, target: { seconds: 0 } })
       }
+      // During work phase, switch to rest
       else if (workRound && rest > 0) {
         timer.stop();
         setWorkRound(false);
-        setRestBetweenRound(false);
+        setRestBetweenSet(false);
         timer.start({ startValues: { seconds: rest }, target: { seconds: 0 } })
       }
-      // After rest period, check if we need rest between rounds
-      else if (!workRound && !restBetweenRound) {
+      // After rest phase within a round
+      else if (!workRound && !restBetweenSet) {
         timer.stop();
-        // If this is the last round, finish
+        // If we've completed all rounds in current set
         if (rounds >= round) {
-          setRounds(rounds + 1);
+          // If this is the last set, finish
+          if (currentSet >= sets) {
+            setCurrentSet(currentSet + 1);
+          }
+          // If we have more sets and break time is set, start break between sets
+          else if (currentSet < sets && restBetweenRounds > 0) {
+            setRestBetweenSet(true);
+            timer.start({ startValues: { seconds: restBetweenRounds }, target: { seconds: 0 } })
+          }
+          // If no break between sets, go directly to next set
+          else {
+            setCurrentSet(currentSet + 1);
+            setRounds(1);
+            setWorkRound(true);
+            timer.start({ startValues: { seconds: work }, target: { seconds: 0 } });
+          }
         }
-        // If we have more rounds and restBetweenRounds is set, start rest between rounds
-        else if (rounds < round && restBetweenRounds > 0) {
-          setRestBetweenRound(true);
-          timer.start({ startValues: { seconds: restBetweenRounds }, target: { seconds: 0 } })
-        }
-        // If no rest between rounds, go directly to next round
+        // Continue to next round within the same set
         else {
           setWorkRound(true);
           setRounds(rounds + 1);
           timer.start({ startValues: { seconds: work }, target: { seconds: 0 } });
         }
       }
-      // After rest between rounds, start next round
-      else if (restBetweenRound) {
+      // After break between sets, start next set
+      else if (restBetweenSet) {
         timer.stop();
+        setCurrentSet(currentSet + 1);
+        setRounds(1);
         setWorkRound(true);
-        setRestBetweenRound(false);
-        setRounds(rounds + 1);
+        setRestBetweenSet(false);
         timer.start({ startValues: { seconds: work }, target: { seconds: 0 } });
       }
     })
-  },[rounds, workRound, restBetweenRound]);
+  },[currentSet, rounds, workRound, restBetweenSet]);
 
 
-  if (rounds > round) {
+  if (currentSet > sets) {
     timer.stop();
     return <h1>FINISHED</h1>
   }
-  else if (rounds == 0) {
+  else if (currentSet == 0) {
     return (
       <>
         <h1>GET READY</h1>
@@ -110,29 +125,45 @@ function CountDown({ name, round, work, rest, restBetweenRounds = 0 }) {
   else if (workRound) {
     return (
       <>
-        <h2 className='top-left'>{name} - ROUND {rounds} OF {round}</h2>
+        <h2 className='top-left'>{name}</h2>
+        <h3 className='top-left' style={{paddingTop: '60px'}}>
+          <span className='red'>SET {currentSet}/{sets}</span>
+        </h3>
         <h1>WORK</h1>
-        <h1 className='time'><span className='red'>{rounds} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <h3>
+          <span style={{color: 'cyan'}}>ROUND {rounds}/{round}</span>
+        </h3>
+        <h1 className='time' style={{color: 'white'}}>
+          {timer.getTimeValues().toString(['minutes', 'seconds'])}
+        </h1>
         <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }
-  else if (!workRound && !restBetweenRound) {
+  else if (!workRound && !restBetweenSet) {
     return (
       <>
-        <h2 className='top-left'>{name} - ROUND {rounds} OF {round}</h2>
+        <h2 className='top-left'>{name}</h2>
+        <h3 className='top-left' style={{paddingTop: '60px'}}>
+          <span className='red'>SET {currentSet}/{sets}</span>
+        </h3>
         <h1>REST</h1>
-        <h1 className='time'> <span className='red'>{rounds} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <h3>
+          <span style={{color: 'cyan'}}>ROUND {rounds}/{round}</span>
+        </h3>
+        <h1 className='time' style={{color: 'white'}}>
+          {timer.getTimeValues().toString(['minutes', 'seconds'])}
+        </h1>
         <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
   }
-  else if (restBetweenRound) {
+  else if (restBetweenSet) {
     return (
       <>
-        <h2 className='top-left'>{name} - ROUND {rounds} OF {round}</h2>
+        <h2 className='top-left'>{name} - SET {currentSet} OF {sets} COMPLETE</h2>
         <h1>BREAK</h1>
-        <h1 className='time'> <span className='red'>{rounds} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
+        <h1 className='time'> <span className='red'>{currentSet} </span>{timer.getTimeValues().toString(['minutes', 'seconds'])}</h1>
         <img className='bottom-right' src="/k-logo.png" alt=""/>
       </>
     )
