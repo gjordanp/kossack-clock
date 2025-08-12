@@ -10,9 +10,10 @@ function Tabata() {
     const [round, setRound] = useState(0);
     const [work, setWork] = useState(0);
     const [rest, setRest] = useState(0);
+    const [restBetweenRounds, setRestBetweenRounds] = useState(0);
 
     if (round > 0 && work > 0 && rest > 0) {
-        return <CountDown name="TABATA" round={round} work={work} rest={rest} />
+        return <CountDown name="TABATA" round={round} work={work} rest={rest} restBetweenRounds={restBetweenRounds} />
     }
     return (
         <>
@@ -24,6 +25,7 @@ function Tabata() {
                 setRound(form.round.value)
                 setWork(form.work.value)
                 setRest(form.rest.value)
+                setRestBetweenRounds(form.restBetweenRounds.value)
                 // navigate('/countdown')
             }}>
                 <div>
@@ -41,6 +43,12 @@ function Tabata() {
                 <div>
                     <label>REST</label>
                     <input type="number" defaultValue='30' name='rest' onClick={(e) => {e.target.select()}} />
+                    <label>SECONDS</label>
+                </div>
+                <br />
+                <div>
+                    <label>BREAK</label>
+                    <input type="number" defaultValue='60' name='restBetweenRounds' onClick={(e) => {e.target.select()}} />
                     <label>SECONDS</label>
                 </div>
 
