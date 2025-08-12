@@ -32,31 +32,31 @@ function Tabata() {
             }}>
                 <div>
                     <label>FOR</label>
-                    <input type="number" defaultValue='3' name='sets' onClick={(e) => {e.target.select()}} />
+                    <input type="number" defaultValue='5' name='sets' onClick={(e) => {e.target.select()}} />
                     <label>SETS</label>
                 </div>
                 <br />
                 <div>
                     <label>OF</label>
-                    <input type="number" defaultValue='8' name='round' onClick={(e) => {e.target.select()}} />
+                    <input type="number" defaultValue='5' name='round' onClick={(e) => {e.target.select()}} />
                     <label>ROUNDS</label>
                 </div>
                 <br />
                 <div>
                     <label>WORK</label>
-                    <input type="number" defaultValue='15' name='work' onClick={(e) => {e.target.select()}} />
+                    <input type="number" defaultValue='20' name='work' onClick={(e) => {e.target.select()}} />
                     <label>SECONDS</label>
                 </div>
                 <br />
                 <div>
                     <label>REST</label>
-                    <input type="number" defaultValue='30' name='rest' onClick={(e) => {e.target.select()}} />
+                    <input type="number" defaultValue='20' name='rest' onClick={(e) => {e.target.select()}} />
                     <label>SECONDS</label>
                 </div>
                 <br />
                 <div>
                     <label>BREAK</label>
-                    <input type="number" defaultValue='120' name='restBetweenRounds' onClick={(e) => {e.target.select()}} />
+                    <input type="number" defaultValue='60' name='restBetweenRounds' onClick={(e) => {e.target.select()}} />
                     <label>SECONDS</label>
                 </div>
 
